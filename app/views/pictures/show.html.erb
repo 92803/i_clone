@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag(@picture.image_url) if @picture.image.present? %>
-</p>
+<%= image_tag @coment.user.icon %>
+<%= @user.name %>
+<%= image_tag(@picture.image_url) if @picture.image.present? %>
+<%= @picture.content %>
 
-<p>
-  <strong>Content:</strong>
-  <%= @picture.content %>
-</p>
+<% unless @blog.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'いいね解除', favorite_path(id: @favorite.id), method: :delete %>
+  <% else %>
+    <%= link_to 'いいね', favorites_path(picture_id: @picture.id), method: :post %>
+  <% end %>
+<% end %>
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<% if @picture.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_picture_path(@picture) %>
+<% end %>
 <%= link_to 'Back', pictures_path %>

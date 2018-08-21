@@ -1,22 +1,20 @@
 <body style="background: linear-gradient(-135deg, #E4A972, #9941D8);">
-  <div class="logo">
-    Pictures!
-  </div>
-  <h3>Log in</h3>
-  <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-  <ul>
-    <li><%= f.label :email %></li>
-    <li><%= f.email_field :email %></li>
-
-    <li><%= f.label :password %></li>
-    <li><%= f.password_field :password %></li>
-
-    <li><%= f.submit "Log in",class: 'btn btn-outline-dark btn-sm' %></li>
-  </ul>
-  <% end %>
-
-  <div>
-    <h5>アカウントをお持ちでない方はこちら</h5>
-    <%= link_to "Sign Up", new_user_path,class: 'btn btn-outline-dark btn-sm' %>
+  <div class="user-form">
+    <div class="logo">
+      Pictures!
+    </div>
+    <div class="form-group">
+      <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <ul>
+        <li><%= f.email_field :email,class: 'form-control',placeholder: "メールアドレス" %></li>
+        <li><%= f.password_field :password,class: 'form-control',placeholder: "パスワード" %></li>
+        <li><%= f.submit "ログイン",class: 'btn btn-primary btn-block btn-sm' %></li>
+      </ul>
+      <% end %>
+      <div>
+        <p>アカウントをお持ちでない方はこちら</p>
+        <%= link_to "新規アカウント", new_user_path,class: 'btn btn-primary btn-block btn-sm' %>
+      </div>
+    </div>
   </div>
 </body>

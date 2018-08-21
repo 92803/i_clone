@@ -22,7 +22,7 @@ body {
 
 #hwrapper {
   width: 100%;
-  background-color: #fff;
+  background-color: #fafafa;
 }
 
 header {
@@ -70,14 +70,6 @@ li {
   list-style: none;
 }
 
-th {
-  padding-bottom: 5px;
-}
-
-td {
-  padding: 0 5px 7px;
-}
-
 div {
   &.field, &.actions {
     margin-bottom: 10px;
@@ -88,20 +80,18 @@ div {
   color: green;
 }
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px 7px 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
 }
 
 label {
   display: block;
+}
+
+/* ログイン（トップ）・新規 ================================ */
+.user-form {
+	color: #999;
+	background-color: #fff;
+	border: solid 1px #eee;
+	padding: 20px;
+	width: 50%;
 }

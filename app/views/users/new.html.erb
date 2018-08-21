@@ -1,36 +1,28 @@
 <body style="background: linear-gradient(-135deg, #E4A972, #9941D8);">
-  <h1>Sign up</h1>
-
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
-      <ul>
       <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <%= message %>
       <% end %>
-      </ul>
     </div>
   <% end %>
+  <div class="user-form">
+    <div class="logo">
+      新規登録
+    </div>
+    <div class="form-group">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <ul>
+          <li>プロフィール画像<%= f.file_field :icon,id: :user_icon,class: 'form-control' %></li>
+          <li><%= f.hidden_field :icon_cache %></li>
+          <li><%= f.text_field :name,class: 'form-control',placeholder: "ユーザーネーム" %><li>
+          <li><%= f.email_field :email,class: 'form-control',placeholder: "メールアドレス"%></li>
+          <li><%= f.password_field :password,class: 'form-control',placeholder: "パスワード" %></li>
+          <li><%= f.password_field :password_confirmation,class: 'form-control',placeholder: "パスワード再入力" %></li>
 
-  <%= form_with(model: @user, local: true) do |f| %>
-  <ul>
-    <li><%= f.label :name, "ユーザーネーム" %></li>
-    <li><%= f.text_field :name %><li>
-
-    <li><%= f.label :icon, "プロフィール写真" %></li>
-    <li><%= f.file_field :icon,id: :user_icon %></li>
-    <li><%= f.hidden_field :icon_cache %></li>
-
-    <li><%= f.label :email, "メールアドレス" %></li>
-    <li><%= f.email_field :email %></li>
-
-    <li><%= f.label :password, "パスワード※６文字以上" %></li>
-    <li><%= f.password_field :password %></li>
-
-    <li><%= f.label :password_confirmation, "※確認の為上記パスワード再入力" %></li>
-    <li><%= f.password_field :password_confirmation %></li>
-
-    <li><%= f.submit "アカウント登録",class: 'btn btn-outline-dark btn-sm' %></li>
-  </ul>
-  <% end %>
+          <li><%= f.submit "アカウント登録",class: 'btn btn-primary btn-block btn-sm' %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
 </body>

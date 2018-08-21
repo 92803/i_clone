@@ -12,12 +12,13 @@ class PicturesController < ApplicationController
   def show
     @picture = Picture.find_by(id: params[:id])
     @user = User.find_by(id: @picture.user_id)
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
 
   # GET /pictures/new
   def new
     if params[:back]
-      @picture = Pict .new(picture_params)
+      @picture = Picture.new(picture_params)
       if params[:cache][:image] != ""
         @picture.image.retrieve_from_cache! params[:cache][:image]
       end
