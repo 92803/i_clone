@@ -13,22 +13,24 @@
   <% end %>
 
   <%= form_with(model: @user, local: true) do |f| %>
-    <%= f.label :name, "ユーザーネーム" %>
-    <%= f.text_field :name %>
+  <ul>
+    <li><%= f.label :name, "ユーザーネーム" %></li>
+    <li><%= f.text_field :name %><li>
 
-    <%= f.label :icon, "プロフィール写真" %>
-    <%= f.file_field :icon,id: :user_icon %>
-    <%= f.hidden_field :icon_cache %>
+    <li><%= f.label :icon, "プロフィール写真" %></li>
+    <li><%= f.file_field :icon,id: :user_icon %></li>
+    <li><%= f.hidden_field :icon_cache %></li>
 
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email %>
+    <li><%= f.label :email, "メールアドレス" %></li>
+    <li><%= f.email_field :email %></li>
 
-    <%= f.label :password, "パスワード※６文字以上" %>
-    <%= f.password_field :password %>
+    <li><%= f.label :password, "パスワード※６文字以上" %></li>
+    <li><%= f.password_field :password %></li>
 
-    <%= f.label :password_confirmation, "※確認の為上記パスワード再入力" %>
-    <%= f.password_field :password_confirmation %>
+    <li><%= f.label :password_confirmation, "※確認の為上記パスワード再入力" %></li>
+    <li><%= f.password_field :password_confirmation %></li>
 
-    <%= f.submit "アカウント登録" %>
+    <li><%= f.submit "アカウント登録",class: 'btn btn-outline-dark btn-sm' %></li>
+  </ul>
   <% end %>
 </body>
