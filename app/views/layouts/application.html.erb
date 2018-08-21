@@ -12,13 +12,15 @@
     <% if logged_in? %>
       <div id="wrapper">
         <div id= "hwrapper">
-            <header>
+          <header>
             <ul>
-              <li><%= link_to "Profile", user_path(current_user.id) %></li>
+              <li><%= link_to "Pic", pictures_path %></li>
+              <li><%= link_to "Fav", favorites_path %></li>
+              <li><%= link_to "Prof", user_path(current_user.id) %></li>
               <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
             </ul>
-            </header>
-          </div>
+          </header>
+        </div>
       <% end %>
       <div class="container">
         <% flash.each do |key, value| %>
