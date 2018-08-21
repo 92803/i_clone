@@ -1,0 +1,21 @@
+<body style="background: linear-gradient(-135deg, #E4A972, #9941D8);">
+  <div class="logo">
+    Pictures!
+  </div>
+  <h3>Log in</h3>
+  <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <%= f.submit "Log in" %>
+  <% end %>
+
+  <div>
+    <h5>アカウントをお持ちでない方はこちら</h5>
+    <%= link_to "Sign Up", new_user_path%>
+  </div>
+</body>

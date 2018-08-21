@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  def new
+  def index
   end
 
   def create
@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
       redirect_to user_path(user.id)
     else
       flash.now[:danger] = 'ログインに失敗しました'
-      render 'new'
+      render 'index'
     end
   end
 
   def destroy
     session.delete(:user_id)
     flash[:notice] = 'ログアウトしました'
-    redirect_to new_session_path
+    redirect_to sessions_path
   end
 end

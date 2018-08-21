@@ -1,11 +1,60 @@
-body {
-  background-color: #fff;
-  color: #333;
-  margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+* {
+	margin:0 auto;
 }
+
+html {
+  height: 100%;
+  position: relative;
+}
+
+body {
+  height: 100%;
+   margin: 0px;
+   -webkit-text-size-adjust: 100%;
+   background-color: #fafafa;
+}
+
+#wrapper{
+     width: 100%;
+     position: relative;
+     min-height: 100%;
+}
+
+#hwrapper {
+   width: 100%;
+   background-color: #fff;
+}
+
+header {
+  margin: auto;
+  max-width: 800px;
+  padding: 10px;
+}
+
+.container {
+  text-align: center;
+  margin: auto;
+  height: 100%;
+  max-width: 800px;
+  background-color: #ffffff70;
+  padding: 100px 10px;/*フッターの高さ*/
+}
+
+#fwrapper {
+   width: 100%;
+   background-color: #fff;
+   height:100px;
+   position:absolute;
+   bottom:0;
+}
+
+footer {
+  text-align: center;
+  margin: auto;
+  max-width: 800px;
+  padding: 10px;
+}
+
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -62,21 +111,6 @@ div {
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px -7px 0;
-    background-color: #c00;
-    color: #fff;
-  }
-
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
 }
 
 label {
