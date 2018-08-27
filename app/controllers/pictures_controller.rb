@@ -1,17 +1,11 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
-  # GET /pictures
-  # GET /pictures.json
   def index
     @pictures = Picture.all
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
   def show
-    @picture = Picture.find_by(id: params[:id])
-    @user = User.find_by(id: @picture.user_id)
     @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
 
@@ -19,9 +13,6 @@ class PicturesController < ApplicationController
   def new
     if params[:back]
       @picture = Picture.new(picture_params)
-      if params[:cache][:image] != ""
-        @picture.image.retrieve_from_cache! params[:cache][:image]
-      end
     else
       @picture = Picture.new
     end
@@ -32,25 +23,22 @@ class PicturesController < ApplicationController
   end
 
   # POST /pictures
-  # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-
-    if params[:cache][:image] != ""
-      @picture.image.retrieve_from_cache! params[:cache][:image]
-      @picture.save!
+    if params[:cache]
+       @picture.image.retrieve_from_cache! params[:cache][:image]
     end
-
     if @picture.save
-      redirect_to @picture, notice: 'Picture was successfully created.'
+       PostMailer.post_mail(@picture).deliver
+       redirect_to pictures_path, notice:"投稿しました"
     else
-      render 'new'
+       render "new"
     end
+   end
   end
 
   # PATCH/PUT /pictures/1
-  # PATCH/PUT /pictures/1.json
   def update
     if @picture.update(picture_params)
       redirect_to pictures_path, notice: 'Picture was successfully updated.'
@@ -60,7 +48,6 @@ class PicturesController < ApplicationController
   end
 
   # DELETE /pictures/1
-  # DELETE /pictures/1.json
   def destroy
     if@picture.destroy
       redirect_to pictures_path, notice: 'Picture was successfully destroyed.'
@@ -68,18 +55,14 @@ class PicturesController < ApplicationController
 
   def confirm
     @picture = Picture.new(picture_params)
-    @picture.user_id = current_user.id
-    render :new if @picture.invalid?
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_picture
-      @picture = Picture.find(params[:id])
-    end
+  def picture_params
+    params.require(:picture).permit(:image,:image_cache,:content)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def picture_params
-      params.require(:picture).permit(:content,:image,:image_cache)
-    end
+  def set_picture
+    @picture = Picture.find(params[:id])
+  end
 end

@@ -1,19 +1,15 @@
-<%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
-  <div class="field">
-    <%= image_tag(@picture.image) if @picture.image.url %>
-    <%= form.hidden_field :image %>
-    <%= hidden_field_tag :"cache[image]",@picture.image.cache_name %>
-  </div>
-  <div class="field">
+<h3>投稿確認</h3>
+<%= form_with(model: @picture,url: pictures_path,local: true) do |form| %>
     <%= form.hidden_field :content %>
-    <%= @picture.content %>
-  </div>
-    <%= form.submit "submit" %>
+    <%= image_tag(@picture.image.url) %>
+    <%= hidden_field_tag :"cache[image]",@picture.image.cache_name %>
+    <p>content:<%= @picture.content %></p>
+
+    <%= form.submit "投稿する"%>
 <% end %>
 
-<%= form_with(model: @picture, url: new_picture_path, local: true, method: 'get') do |form| %>
-    <%= form.hidden_field :content %>
-    <%= form.hidden_field :image %>
-    <%= hidden_field_tag :"cache[image]",@picture.image.cache_name %>
-    <%= form.submit "Back",name: 'back' %>
+<%= form_with(model: @picture,url: new_picture_path,local: true,method: 'get') do |form|%>
+  <%= hidden_field :"cache[image]",@picture.image.cache_name %>
+  <%= form.hidden_field :content %>
+  <%= form.submit '戻る',name: 'back' %>
 <% end %>

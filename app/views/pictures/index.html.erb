@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pictures</h1>
+<h1>All Pictures</h1>
 
 <table>
   <thead>
@@ -18,14 +18,10 @@
     <%= picture.created_at.strftime('%Y/%m/%d %H:%M')%>
 
       <tr>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', pictures_path(picture.id) %></td>
+        <td><%= link_to 'Edit', edit_picture_path(picture.id),data: {confirm: '本当に編集していいですか？'} %></td>
+        <td><%= link_to 'Destroy', picture_path(picture.id), method: :delete, data: { confirm: '本当にしていいですか？' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Picture', new_picture_path %>

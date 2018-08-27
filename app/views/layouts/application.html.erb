@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   </head>
 
   <body>
@@ -13,12 +14,31 @@
       <div id="wrapper">
         <div id= "hwrapper">
           <header>
-            <ul>
-              <li><%= link_to "Pic", pictures_path %></li>
-              <li><%= link_to "Fav", favorites_path %></li>
-              <li><%= link_to "Prof", user_path(current_user.id) %></li>
-              <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
-            </ul>
+            <li>
+              <%= link_to pictures_path do %>
+                <i class="fas fa-home fa-2x"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_picture_path do %>
+                <i class="far fa-plus-square fa-2x"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to favorites_path do %>
+                <i class="fas fa-heart fa-2x"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_path(current_user.id) do %>
+                <i class="far fa-user fa-2x"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to session_path(current_user.id), method: :delete do %>
+                <i class="fas fa-sign-out-alt fa-2x"></i>
+              <% end %>
+            </li>
           </header>
         </div>
       <% end %>
