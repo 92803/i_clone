@@ -26,16 +26,13 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-    if params[:cache]
-       @picture.image.retrieve_from_cache! params[:cache][:image]
-    end
+    @picture.image.retrieve_from_cache! params[:cache][:image]
     if @picture.save
        PostMailer.post_mail(@picture).deliver
        redirect_to pictures_path, notice:"投稿しました"
     else
        render "new"
     end
-   end
   end
 
   # PATCH/PUT /pictures/1
@@ -49,12 +46,14 @@ class PicturesController < ApplicationController
 
   # DELETE /pictures/1
   def destroy
-    if@picture.destroy
-      redirect_to pictures_path, notice: 'Picture was successfully destroyed.'
+    @picture.destroy
+    redirect_to pictures_path, notice: 'Picture was successfully destroyed.'
   end
 
   def confirm
     @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
+    render :new if @picture.invalid?
   end
 
   private
