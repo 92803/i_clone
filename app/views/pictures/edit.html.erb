@@ -1,6 +1,8 @@
 <h1>Editing Picture</h1>
 
 <%= render 'form', picture: @picture %>
-
-<%= link_to 'Show', @picture %> |
-<%= link_to 'Back', pictures_path %>
+<div class="form-menu">
+  <%= link_to @picture do %>
+    <i class="far fa-eye">内容を見る</i>
+  <% end %>
+</div>

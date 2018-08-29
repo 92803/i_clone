@@ -1,3 +1,61 @@
-// Place all the styles related to the pictures controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// picture-index(post)
+.flex-container {
+  border: solid 1px gray;
+}
+
+.post-user {
+  text-align: left;
+  padding: 5px 5px;
+  border-bottom: solid 1px gray;
+}
+
+.post-icon img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.post-name {
+  font-size: 25px;
+  display: inline;
+  vertical-align: middle;
+}
+
+.post-picture img {
+  width: 100%;
+  height: 100%;
+  border-bottom: solid 1px gray;
+}
+
+.post-menu {
+  text-align: left;
+  padding: 5px 5px;
+}
+
+.post-menu i {
+  font-size: 30px;
+  color: #111;
+  padding: 0px 10px;
+}
+
+.post-content {
+  font-size: 25px;
+  word-wrap: break-word;
+  text-align: left;
+  padding: 10px 10px;
+}
+
+.post-time {
+  text-align: left;
+  color: gray;
+  padding-left: 5px;
+  border-bottom: solid 1px gray;
+}
+// picture-edit,etc
+.form-menu i{
+  color: #111;
+  font-size: 25px;
+  margin-top: 5px;
+}

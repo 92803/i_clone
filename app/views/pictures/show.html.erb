@@ -1,19 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="flex-container">
+  <div class="post-user">
+    <span class="post-icon">
+      <%= image_tag @picture.user.icon %>
+    </span>
+    <p class="post-name">
+      <%= @user.name %>
+    </p>
+  </div>
+  <div class="post-picture">
+    <%= image_tag(@picture.image_url) if @picture.image.present? %>
+  </div>
+  <div class="post-menu">
+    <% unless @picture.user_id == current_user.id %>
+      <% if @favorite.present? %>
+        <%= link_to favorite_path(id: @favorite.id), method: :delete do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= link_to favorites_path(picture_id: @picture.id), method: :post do %>
+          <i class="far fa-heart">いいね!</i>
+        <% end %>
+      <% end %>
+    <% end %>
 
-<%= image_tag @coment.user.icon %>
-<%= @user.name %>
-<%= image_tag(@picture.image_url) if @picture.image.present? %>
-<%= @picture.content %>
-
-<% unless @blog.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'いいね解除', favorite_path(id: @favorite.id), method: :delete %>
-  <% else %>
-    <%= link_to 'いいね', favorites_path(picture_id: @picture.id), method: :post %>
-  <% end %>
-<% end %>
-
-<% if @picture.user_id == current_user.id %>
-  <%= link_to 'Edit', edit_picture_path(@picture) %>
-<% end %>
-<%= link_to 'Back', pictures_path %>
+    <% if @picture.user_id == current_user.id %>
+      <%= link_to edit_picture_path(@picture.id),data: {confirm: '本当に編集しますか？'} do %>
+        <i class="far fa-edit"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="post-content">
+    <%= @picture.content %>
+  </div>
+  <div class="post-time">
+    <%= @picture.created_at.strftime('%Y.%m.%d %H:%M')%>
+  </div>
+</div>

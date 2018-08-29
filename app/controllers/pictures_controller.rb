@@ -2,10 +2,12 @@ class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pictures = Picture.all
+    @pictures = Picture.all.order(created_at: :desc)
   end
 
   def show
+    @picture = Picture.find_by(id: params[:id])
+    @user = User.find_by(id: @picture.user_id)
     @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
 
@@ -13,6 +15,9 @@ class PicturesController < ApplicationController
   def new
     if params[:back]
       @picture = Picture.new(picture_params)
+      if params[:cache][:image] != ""
+        @picture.image.retrieve_from_cache! params[:cache][:image]
+      end
     else
       @picture = Picture.new
     end
@@ -28,7 +33,7 @@ class PicturesController < ApplicationController
     @picture.user_id = current_user.id
     @picture.image.retrieve_from_cache! params[:cache][:image]
     if @picture.save
-       PostMailer.post_mail(@picture).deliver
+       PictureMailer.picture_mail(@picture).deliver
        redirect_to pictures_path, notice:"投稿しました"
     else
        render "new"

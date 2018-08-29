@@ -1,11 +1,16 @@
 <h3>投稿確認</h3>
 <%= form_with(model: @picture,url: pictures_path,local: true) do |form| %>
+  <div class="flex-container">
     <%= form.hidden_field :content %>
-    <%= image_tag(@picture.image.url) %>
-    <%= hidden_field_tag :"cache[image]",@picture.image.cache_name %>
-    <p>content:<%= @picture.content %></p>
-
-    <%= form.submit "投稿する"%>
+    <div class="post-picture">
+      <%= image_tag(@picture.image) %>
+      <%= hidden_field_tag :"cache[image]",@picture.image.cache_name %>
+    </div>
+    <p class="post-content">
+      <%= @picture.content %>
+    </p>
+    <%= form.submit "投稿する" %>
+  </div>
 <% end %>
 
 <%= form_with(model: @picture,url: new_picture_path,local: true,method: 'get') do |form|%>

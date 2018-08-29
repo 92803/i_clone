@@ -1,0 +1,25 @@
+// user-show(prof)
+.user-prof {
+  float: left;
+  padding: 5px;
+}
+
+.user-icon img {
+  width: 180px;
+  height: 180px;
+  border-radius: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-name {
+  font-size: 25px;
+}
+
+.user-mail {
+  padding-top: 25px;
+}
+
+.user-menu {
+  padding: 25px 10px;
+}

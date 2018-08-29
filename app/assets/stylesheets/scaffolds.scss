@@ -87,10 +87,6 @@ div {
   }
 }
 
-#notice {
-  color: green;
-}
-
 #error_explanation {
 }
 
@@ -98,11 +94,18 @@ label {
   display: block;
 }
 
-/* ログイン（トップ）・新規 ================================ */
+// user-new(session)
 .user-form {
 	color: #999;
 	background-color: #fff;
 	border: solid 1px #eee;
 	padding: 20px;
 	width: 50%;
+}
+
+// picture(confirm/edit/etc)
+input {
+	border: solid 1px gray;
+  border-radius: 2px;
+	margin: 5px;
 }

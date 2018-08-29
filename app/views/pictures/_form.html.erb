@@ -1,7 +1,7 @@
 <%= form_with(model: @picture,local: true,url: choose_new_or_edit) do |form| %>
   <% if @picture.errors.any? %>
     <div id="error_explanation">
-        <p><%= @picture.errors.count %>件のエラーがあります。</p>
+        <p><%= @picture.errors.count %>件のエラー</p>
         <ul>
           <% @picture.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>

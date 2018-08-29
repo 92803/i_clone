@@ -1,27 +1,38 @@
-<p id="notice"><%= notice %></p>
-
 <h1>All Pictures</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
-
-    <%= picture.user.name %>
-    <%= image_tag picture.image %>
-    <%= picture.content %>
-    <%= picture.created_at.strftime('%Y/%m/%d %H:%M')%>
-
-      <tr>
-        <td><%= link_to 'Show', pictures_path(picture.id) %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture.id),data: {confirm: '本当に編集していいですか？'} %></td>
-        <td><%= link_to 'Destroy', picture_path(picture.id), method: :delete, data: { confirm: '本当にしていいですか？' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="flex-container">
+  <% @pictures.each do |picture| %>
+    <div>
+      <div class="post-user">
+        <span class="post-icon">
+          <%= image_tag picture.user.icon %>
+        </span>
+        <p class="post-name">
+          <%= picture.user.name %>
+        </p>
+      </div>
+      <div class="post-picture">
+        <%= image_tag picture.image %>
+      </div>
+      <div class="post-menu">
+        <%= link_to picture_path(picture.id) do %>
+          <i class="far fa-eye"></i>
+        <% end %>
+        <% if picture.user_id == current_user.id %>
+          <%= link_to edit_picture_path(picture.id),data: {confirm: '本当に編集しますか？'} do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+          <%= link_to picture_path(picture.id),method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="post-content text-truncate">
+        <%= picture.content %>
+      </div>
+      <div class="post-time">
+        <%= time_ago_in_words(picture.created_at) %>
+      </div>
+    </div>
+  <% end %>
+</div>

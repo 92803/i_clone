@@ -1,3 +1,30 @@
-<% @favorites_pictures.each do |favorites_picture| %>
-  <%= link_to image_tag favorites_picture.image %>
-<% end %>
+<h1>Favorites Pictures</h1>
+<div class="flex-container">
+  <% @favorites.each do |fav| %>
+    <div>
+      <% post = User.find(fav.picture.user_id)%>
+      <div class="post-user">
+        <span class="post-icon">
+          <%= image_tag post.icon %>
+        </span>
+        <p class="post-name">
+          <%= post.name %>
+        </p>
+      </div>
+      <div class="post-picture">
+        <%= image_tag (fav.picture.image) %>
+      </div>
+      <div class="post-menu">
+        <%= link_to favorite_path(fav.id), method: :delete do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      </div>
+      <div class="post-content">
+        <%= fav.picture.content %>
+      </div>
+      <div class="post-time">
+        <%= post.created_at.strftime('%Y.%m.%d %H:%M')%>
+      </div>
+    </div>
+  <% end %>
+</div>

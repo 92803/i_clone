@@ -1,8 +1,18 @@
-<%= image_tag @user.icon %>
-<h1><%= @user.name %></h1>
+<h1>User Acount</h1>
+<div class="user-prof">
+  <div class="user-icon">
+    <%= image_tag @user.icon %>
+  </div>
+  <div class="user-name">
+    <%= @user.name %>
+  </div>
+</div>
 
-<p>メールアドレス: <%= @user.email %></p>
-
-<%= link_to session_path(current_user.id), method: :delete do %>
-  <i class="fas fa-sign-out-alt fa-2x">logout</i>
-<% end %>
+<div class="user-mail">
+  メールアドレス: <%= @user.email %>
+</div>
+<div class="user-menu">
+  <%= link_to session_path(current_user.id), method: :delete do %>
+    <i class="fas fa-sign-out-alt fa-2x">logout</i>
+  <% end %>
+</div>
